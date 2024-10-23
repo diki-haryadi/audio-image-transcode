@@ -36,7 +36,12 @@ func listingImagePath(imagePath string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer file.Close()
+	defer func(file *os.File) {
+		err := file.Close()
+		if err != nil {
+
+		}
+	}(file)
 
 	err = filepath.Walk(inputImageFolder, func(path string, info fs.FileInfo, err error) error {
 		if err != nil {
