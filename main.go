@@ -12,8 +12,14 @@ import (
 )
 
 func main() {
-	listingImagePath("4125898")
-	generateVideo("4125898")
+	if len(os.Args) < 2 {
+		log.Fatal("Please provide the root folder path")
+	}
+
+	// Root folder passed as a command-line argument
+	rootFolder := os.Args[1]
+	listingImagePath(rootFolder)
+	generateVideo(rootFolder)
 }
 
 func listingImagePath(imagePath string) {
